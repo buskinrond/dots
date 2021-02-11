@@ -33,15 +33,16 @@ exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id setcursor
 #exec --no-startup-id tint2 -c /home/krishnaj/.config/tint2/horizontal-light-transparent.tint2rc
-exec --no-startup-id xrandr --output eDP --brightness 0.8
+exec --no-startup-id xrandr --output eDP-1 --brightness 0.5
 exec_always --no-startup-id numlockx on
 exec blueberry-tray
 exec --no-startup-id java -Xmx1024m -jar "/opt/xdman/xdman.jar" -m
+exec --no-startup-id bash .config/scripts/battery.sh
 # start a terminal #alacritty xfce4-terminal
 bindsym $super+Return exec alacritty -e fish
 bindsym $super+t exec xfce4-terminal
 bindsym $super+Shift+Return exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3
-
+bindsym $super+b exec DISPLAY=:0.0 /usr/bin/dunstify "$batt"
 # hide/unhide i3status bar
 bindsym $super+m bar mode toggle
 
@@ -280,11 +281,4 @@ smart_gaps on
 ### settings for i3-gaps: ###
 #############################
 
-bar {
-        status_command i3blocks
-        position top
-        # font -xos4-terminus-medium-r-normal--12-120-72-72-C-60-iso8859-1
-        # font -*-proggysquaresz-medium-r-normal-*-11-80-*-*-*-*-iso8859-1
-    workspace_buttons yes
 
-}
